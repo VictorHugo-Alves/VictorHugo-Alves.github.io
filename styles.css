@@ -80,8 +80,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ---------- cabeçalho ---------- */
-/* Duas colunas no desktop: identidade à esquerda, retrato à direita. No
-   estreito o retrato vem primeiro, porque rosto abre melhor que texto. */
 .topo {
   display: grid;
   gap: clamp(32px, 5vw, 56px);
@@ -89,53 +87,32 @@ img { max-width: 100%; height: auto; display: block; }
   border-bottom: 1px solid var(--linha);
 }
 
-@media (min-width: 820px) {
-  .topo {
-    grid-template-columns: minmax(0, 1.5fr) minmax(230px, .85fr);
-    align-items: start;
-  }
-}
-
 .topo-texto { display: grid; gap: 20px; align-content: start; }
 .topo-texto p { margin: 0; max-width: 58ch; }
 
-/* Retrato: moldura de fio deslocado. O quadro fica atrás e escapa por dois
-   lados, então a foto ganha profundidade sem virar cartão com sombra. */
-.retrato {
-  position: relative;
-  margin: 0 14px 14px 0;
-  order: -1;
-  justify-self: start;
-  width: 100%;
-  max-width: 320px;
+/* Identidade: avatar circular colado no nome. Pequeno de propósito, o
+   retrato é assinatura e não ilustração. */
+.topo-id {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 20px);
 }
 
-@media (min-width: 820px) {
-  .retrato { order: 0; justify-self: stretch; }
-}
-
-.retrato::before {
-  content: "";
-  position: absolute;
-  inset: 14px -14px -14px 14px;
-  border: 1px solid var(--realce);
-  border-radius: 5px;
-  z-index: 0;
-}
-
-.retrato img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  border-radius: 5px;
+.avatar {
+  flex: none;
+  width: clamp(64px, 9vw, 88px);
+  height: clamp(64px, 9vw, 88px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 42%;
   border: 1px solid var(--linha);
-  background: var(--superf);
+  box-shadow: 0 0 0 5px var(--realce-f);
 }
 
 .topo h1 {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(2.9rem, 8vw, 4.6rem);
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
   line-height: 1.02;
   letter-spacing: -.022em;
   margin: 0;
@@ -144,18 +121,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 .papel {
   font-family: var(--mono);
-  font-size: .8rem;
+  font-size: .78rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--suave);
-  margin: 10px 0 0;
+  margin: 8px 0 0;
 }
 
 .posicao {
-  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  font-size: clamp(1.05rem, 2vw, 1.18rem);
   line-height: 1.55;
-  max-width: 62ch;
-  margin: 0;
   color: var(--tinta);
 }
 

@@ -26,12 +26,12 @@ Dois níveis, para a capa não crescer junto com o número de casos:
 - `index.html` : capa curta. Cada caso ocupa um bloco com o essencial e leva para a página dele.
 - `casos/*.html` : a história inteira de cada caso. É aqui que o texto longo mora.
 - `styles.css` : um arquivo, sem framework, cobrindo a capa e as páginas de caso.
-- `img/` : retrato e previews dos casos.
+- `img/` : avatar e previews dos casos.
 
-O retrato (`img/victor.jpg`) sai de uma foto de 7360x4912, endireitada pela
-orientação EXIF, recortada em 4:5 com os olhos a ~34% da altura e o rosto a 62% da
-largura, deixando o espaço do lado para onde ele olha. Vai para a web com 1000x1250
-e ~120 KB.
+O avatar (`img/victor.jpg`) sai de uma foto de 7360x4912, endireitada pela
+orientação EXIF e recortada em quadrado com o rosto ocupando ~74% da altura, que é
+o que faz a cara continuar legível quando o círculo tem 64px. Vai para a web com
+512x512 e ~30 KB.
 
 As tags Open Graph no `<head>` montam o cartão de pré-visualização que aparece ao
 colar o link no LinkedIn, no WhatsApp ou no Slack. O `og:image` precisa de URL
