@@ -1,0 +1,318 @@
+/* ====================================================================
+   Capa do portfólio. Um arquivo, sem framework.
+
+   Ideia do layout: a página é uma ficha técnica, não um cartão de visita.
+   Régua de leitura estreita, numerais tabulares, e cada caso ocupando a
+   largura toda em vez de virar um cartãozinho arredondado numa grade.
+   ==================================================================== */
+
+/* ---------- tokens: o claro é o padrão, o escuro só redefine ---------- */
+:root {
+  --papel:    #F3F4F7;
+  --superf:   #FFFFFF;
+  --tinta:    #101317;
+  --suave:    #5C6672;
+  --linha:    #DBDFE6;
+  --realce:   #1D3FCC;
+  --realce-f: #EBEEFB;
+  --sombra:   0 1px 2px rgba(16, 19, 23, .06), 0 12px 32px -18px rgba(16, 19, 23, .35);
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel:    #0B0E12;
+    --superf:   #12161C;
+    --tinta:    #E4E8EE;
+    --suave:    #8B96A5;
+    --linha:    #222933;
+    --realce:   #8AA6FF;
+    --realce-f: #161D2E;
+    --sombra:   0 1px 2px rgba(0, 0, 0, .4), 0 14px 40px -20px rgba(0, 0, 0, .8);
+  }
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--realce); }
+
+a:focus-visible,
+.pular:focus-visible {
+  outline: 2px solid var(--realce);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.pular {
+  position: absolute;
+  left: -9999px;
+}
+.pular:focus {
+  left: 16px; top: 16px;
+  z-index: 10;
+  background: var(--superf);
+  padding: 10px 16px;
+  border: 1px solid var(--linha);
+}
+
+.folha {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(48px, 9vw, 108px) clamp(20px, 5vw, 48px) 72px;
+}
+
+/* ---------- cabeçalho ---------- */
+.topo {
+  display: grid;
+  gap: 28px;
+  padding-bottom: clamp(40px, 6vw, 64px);
+  border-bottom: 1px solid var(--linha);
+}
+
+.topo h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.9rem, 8vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -.022em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.papel {
+  font-family: var(--mono);
+  font-size: .8rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--suave);
+  margin: 10px 0 0;
+}
+
+.posicao {
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  line-height: 1.55;
+  max-width: 62ch;
+  margin: 0;
+  color: var(--tinta);
+}
+
+.disciplinas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.disciplinas li {
+  font-family: var(--mono);
+  font-size: .74rem;
+  letter-spacing: .045em;
+  color: var(--suave);
+  border: 1px solid var(--linha);
+  border-radius: 2px;
+  padding: 5px 10px;
+  background: var(--superf);
+}
+
+/* ---------- seção ---------- */
+.secao {
+  font-family: var(--mono);
+  font-size: .74rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--suave);
+  margin: clamp(48px, 7vw, 72px) 0 24px;
+}
+
+/* ---------- caso ---------- */
+.caso {
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+}
+
+.caso-tela {
+  display: block;
+  position: relative;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--superf);
+  box-shadow: var(--sombra);
+  transition: transform .28s ease, border-color .28s ease;
+}
+
+.caso-tela:hover { transform: translateY(-3px); border-color: var(--realce); }
+
+.caso-abrir {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  font-family: var(--mono);
+  font-size: .74rem;
+  letter-spacing: .04em;
+  color: #FFFFFF;
+  background: var(--realce);
+  padding: 7px 13px;
+  border-radius: 3px;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+
+.caso-tela:hover .caso-abrir,
+.caso-tela:focus-visible .caso-abrir { opacity: 1; transform: none; }
+
+/* no toque não existe hover: o rótulo fica sempre visível */
+@media (hover: none) {
+  .caso-abrir { opacity: 1; transform: none; }
+}
+
+.caso-texto {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .caso-texto { grid-template-columns: minmax(0, 1.55fr) minmax(240px, .85fr); }
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: .73rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--suave);
+  margin: 0 0 10px;
+}
+
+.caso-corpo h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+  line-height: 1.14;
+  letter-spacing: -.014em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.caso-corpo p { margin: 0 0 16px; max-width: 60ch; }
+.caso-corpo p:last-child { margin-bottom: 0; }
+.caso-corpo strong { font-weight: 500; color: var(--tinta); }
+
+/* ---------- ficha lateral ---------- */
+.caso-ficha dl {
+  margin: 0 0 24px;
+  border-top: 1px solid var(--linha);
+}
+
+.caso-ficha dl > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+.caso-ficha dt {
+  font-size: .84rem;
+  color: var(--suave);
+}
+
+.caso-ficha dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: .92rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 0;
+}
+
+.botao {
+  display: inline-block;
+  background: var(--realce);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: .95rem;
+  padding: 11px 20px;
+  border-radius: 3px;
+  transition: filter .2s ease;
+}
+
+.botao:hover { filter: brightness(1.12); }
+
+.link-sec {
+  font-size: .95rem;
+  color: var(--suave);
+  text-decoration-color: var(--linha);
+  text-underline-offset: 3px;
+}
+
+.link-sec:hover { color: var(--realce); }
+
+/* ---------- rodapé ---------- */
+.proximos {
+  margin: clamp(44px, 6vw, 64px) 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--linha);
+  font-size: .95rem;
+  color: var(--suave);
+  max-width: 60ch;
+}
+
+.rodape {
+  margin-top: clamp(52px, 7vw, 76px);
+  padding-top: 26px;
+  border-top: 1px solid var(--linha);
+  display: grid;
+  gap: 14px;
+}
+
+.rodape p { margin: 0; }
+
+.rodape a {
+  font-family: var(--mono);
+  font-size: .88rem;
+  text-decoration-color: var(--linha);
+  text-underline-offset: 3px;
+}
+
+.nota {
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--suave);
+  max-width: 62ch;
+}
+
+/* ---------- movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .caso-tela:hover { transform: none; }
+}

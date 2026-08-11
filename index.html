@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victor Hugo · Analista de dados</title>
+<meta name="description" content="Extração, tratamento e análise de dados de aquisição. Casos de painéis e decisões de leitura de dado em lançamentos digitais.">
+<meta name="author" content="Victor Hugo">
+
+<!-- Cartão de pré-visualização: é o que aparece quando o link é colado no
+     LinkedIn, no WhatsApp ou no Slack. Precisa de URL absoluta. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://victorhugo-alves.github.io/">
+<meta property="og:title" content="Victor Hugo · Analista de dados">
+<meta property="og:description" content="Extração, tratamento e análise de dados de aquisição. Casos de painéis e decisões de leitura de dado em lançamentos digitais.">
+<meta property="og:image" content="https://victorhugo-alves.github.io/img/painel-captacao.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231D3FCC'/><path d='M7 22 L13 13 L18 18 L25 9' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<a class="pular" href="#casos">Pular para os casos</a>
+
+<div class="folha">
+
+  <header class="topo">
+    <div class="topo-id">
+      <h1>Victor&nbsp;Hugo</h1>
+      <p class="papel">Analista de dados</p>
+    </div>
+    <p class="posicao">
+      Trabalho com extração, tratamento e análise de dados de aquisição: o caminho
+      que vai do gasto em mídia até o lead qualificado. Os casos abaixo são sobre
+      decisões de leitura de dado, não sobre telas bonitas.
+    </p>
+    <ul class="disciplinas">
+      <li>Extração</li>
+      <li>Tratamento</li>
+      <li>Análise</li>
+      <li>Padronização de UTM</li>
+      <li>Auditoria de base</li>
+    </ul>
+  </header>
+
+  <main id="casos">
+    <h2 class="secao">Casos</h2>
+
+    <article class="caso">
+      <a class="caso-tela" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/"
+         aria-label="Abrir a demonstração do painel de captação">
+        <img src="./img/painel-captacao.png" width="1600" height="977" loading="eager" decoding="async"
+             alt="Painel de captação: contagem regressiva do evento, barra de progresso da captação e dois cartões de ritmo, um de leads e outro de investimento, cada um comparando o acumulado do dia com a meta diária.">
+        <span class="caso-abrir">Abrir a demonstração</span>
+      </a>
+
+      <div class="caso-texto">
+        <div class="caso-corpo">
+          <p class="eyebrow">Painel de operação · Vue 3 + Fastify + Postgres</p>
+          <h3>Painel de captação de lançamento</h3>
+          <p>
+            Painel que a equipe opera durante uma captação de 40 dias para decidir
+            onde colocar verba no dia seguinte. O que está publicado é o
+            <strong>front de produção rodando com dados gerados do zero</strong>:
+            mesmos componentes, mesmas contas, nenhum número real.
+          </p>
+          <p>
+            A decisão que ele carrega é a escala de cor. Antes, cada métrica era
+            verde quando batia a meta e vermelha quando não batia, então duas
+            páginas convertendo 34% e 19% contra o mesmo alvo saíam idênticas na
+            tela. Quem opera precisa saber o que atacar primeiro, e duas cores não
+            priorizam nada.
+          </p>
+        </div>
+
+        <aside class="caso-ficha">
+          <dl>
+            <div><dt>Janela</dt><dd>40 dias</dd></div>
+            <div><dt>Rotas de API</dt><dd>35</dd></div>
+            <div><dt>Dados</dt><dd>100% gerados</dd></div>
+          </dl>
+          <p class="links">
+            <a class="botao" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/">Abrir a demonstração</a>
+            <a class="link-sec" href="https://github.com/VictorHugo-Alves/painel-captacao-case">Código e explicação</a>
+          </p>
+        </aside>
+      </div>
+    </article>
+
+    <p class="proximos">
+      Outros casos em preparação: controle de acessos de alunos e auditoria de
+      integridade de base.
+    </p>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="https://github.com/VictorHugo-Alves">github.com/VictorHugo-Alves</a></p>
+    <!-- Para acrescentar LinkedIn ou e-mail, é só duplicar a linha acima. -->
+    <p class="nota">
+      As demonstrações usam dados inteiramente fictícios, gerados para este
+      portfólio. Nenhum número, nome ou meta corresponde a operação real.
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
