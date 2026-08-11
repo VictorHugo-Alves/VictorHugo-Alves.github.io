@@ -14,9 +14,11 @@ Cada caso mora no repositório dele e tem o próprio Pages. Esta página só lin
 
 ## Para acrescentar um caso
 
-1. Copiar `casos/painel-captacao.html` para `casos/novo-caso.html` e reescrever.
-2. Duplicar o bloco `<article class="caso">` no `index.html`, apontando para a página nova.
-3. Colocar o preview em `img/` (a captura da tela do próprio projeto serve).
+1. Copiar `casos/painel-captacao.html` para `casos/novo-projeto.html` e reescrever.
+2. Duplicar o bloco `<a class="cartao">` dentro de `.grade` no `index.html`, apontando
+   para a página nova. A grade se ajusta sozinha: não há nada a mexer no CSS.
+3. Colocar o preview em `img/` (a captura da tela do próprio projeto serve). O cartão
+   recorta em 16:9 alinhado pelo topo, então vale enquadrar pensando nisso.
 4. `git push`. O Pages republica em cerca de um minuto.
 
 ## Estrutura

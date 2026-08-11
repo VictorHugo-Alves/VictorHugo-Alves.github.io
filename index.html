@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Victor Hugo · Analista de dados</title>
-<meta name="description" content="Construo e opero a camada de dados de lançamentos digitais: ingestão, normalização, métricas e a análise que sustenta a decisão.">
+<meta name="description" content="Analista de dados. ETL, automação, pipeline e análise: transformo dado espalhado em informação que alguém usa para decidir.">
 <meta name="author" content="Victor Hugo">
 
 <!-- Cartão de pré-visualização: é o que aparece quando o link é colado no
@@ -12,7 +12,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://victorhugo-alves.github.io/">
 <meta property="og:title" content="Victor Hugo · Analista de dados">
-<meta property="og:description" content="Construo e opero a camada de dados de lançamentos digitais: ingestão, normalização, métricas e a análise que sustenta a decisão.">
+<meta property="og:description" content="ETL, automação, pipeline e análise: transformo dado espalhado em informação que alguém usa para decidir.">
 <meta property="og:image" content="https://victorhugo-alves.github.io/img/painel-captacao.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -25,7 +25,7 @@
 </head>
 <body>
 
-<a class="pular" href="#casos">Pular para os casos</a>
+<a class="pular" href="#casos">Pular para os projetos</a>
 
 <div class="folha">
 
@@ -42,77 +42,91 @@
       </div>
 
       <p class="posicao">
-        Trabalho com aquisição: o caminho que vai do gasto em mídia até o lead
-        qualificado. Na prática, isso quer dizer construir e operar a camada que
-        sustenta essa leitura, e não só consultá-la.
+        Meu trabalho é pegar dado espalhado em ferramenta que não conversa com
+        ferramenta e transformar em informação que alguém usa para decidir.
       </p>
       <p>
-        Ligo as fontes, resolvo as divergências entre elas, defino o que cada
-        métrica significa e opero isso todo dia, com a equipe inteira em cima.
-        Gosto justamente do problema que ninguém vê: quando duas ferramentas
-        contam a mesma coisa de jeitos diferentes, alguém precisa decidir qual
-        número é o número e sustentar a decisão.
+        Na prática isso é <strong>ETL</strong>, extração, transformação e
+        carregamento; <strong>automação</strong> de rotina que antes era manual;
+        <strong>construção de pipeline</strong>; e a <strong>análise</strong> que
+        fecha o ciclo. Também cuido da integridade da base e da padronização de
+        rastreio, porque análise em cima de dado sujo é chute com gráfico bonito.
       </p>
       <p>
-        Painel, para mim, é veículo. O que interessa é a decisão que sai dele.
+        Hoje atuo numa squad de tráfego e dados de uma operação de lançamentos
+        digitais. Dashboard, para mim, é veículo: o que interessa é a decisão que
+        sai dele.
       </p>
-
-      <ul class="disciplinas">
-        <li>Pipeline de dados</li>
-        <li>Integração de API</li>
-        <li>Modelagem de métrica</li>
-        <li>Padronização de UTM</li>
-        <li>Auditoria de base</li>
-        <li>Análise para decisão</li>
-      </ul>
     </div>
   </header>
 
-  <main id="casos">
-    <h2 class="secao">Casos</h2>
+  <section class="bloco" id="ferramentas">
+    <h2 class="secao">O que eu faço</h2>
+    <ul class="disciplinas">
+      <li>ETL</li>
+      <li>Automação</li>
+      <li>Pipeline de dados</li>
+      <li>Integração de API</li>
+      <li>Modelagem de métrica</li>
+      <li>Padronização de UTM</li>
+      <li>Auditoria de base</li>
+      <li>Análise para decisão</li>
+    </ul>
 
-    <article class="caso">
-      <a class="caso-tela" href="./casos/painel-captacao.html"
-         aria-label="Abrir o caso da central de controle de lançamento">
-        <img src="./img/painel-captacao.png" width="1600" height="977" loading="lazy" decoding="async"
-             alt="Painel de captação: contagem regressiva do evento, barra de progresso da captação e dois cartões de ritmo, um de leads e outro de investimento, cada um comparando o acumulado do dia com a meta diária.">
-        <span class="caso-abrir">Ver o caso</span>
+    <h2 class="secao secao-2">Ferramentas</h2>
+    <dl class="ferramentas">
+      <div>
+        <dt>Dados e banco</dt>
+        <dd>SQL · Supabase · Postgres · Excel · Google Sheets</dd>
+      </div>
+      <div>
+        <dt>Visualização</dt>
+        <dd>Looker Studio · VK Metrics</dd>
+      </div>
+      <div>
+        <dt>Mídia e rastreio</dt>
+        <dd>Meta Ads · Google Ads · UTM · Stract</dd>
+      </div>
+      <div>
+        <dt>Operação</dt>
+        <dd>ActiveCampaign · Hotmart · ClickUp · Slack</dd>
+      </div>
+      <div>
+        <dt>Versionamento</dt>
+        <dd>Git · GitHub</dd>
+      </div>
+    </dl>
+  </section>
+
+  <main class="bloco" id="casos">
+    <h2 class="secao">Projetos</h2>
+
+    <div class="grade">
+
+      <a class="cartao" href="./casos/painel-captacao.html">
+        <span class="cartao-tela">
+          <img src="./img/painel-captacao.png" width="1600" height="977" loading="lazy" decoding="async"
+               alt="Painel de captação com contagem regressiva do evento e cartões de ritmo de leads e de investimento.">
+        </span>
+        <span class="cartao-corpo">
+          <span class="eyebrow">Sistema em produção</span>
+          <span class="cartao-titulo">Central de controle de lançamento</span>
+          <span class="cartao-resumo">
+            A camada de dados de um lançamento inteiro, construída por mim de ponta
+            a ponta: seis integrações, ingestão, normalização e cada métrica
+            definida. Sete frentes da equipe usam todo dia.
+          </span>
+          <span class="cartao-fatos">
+            <b>R$ 500 mil</b> em verba · <b>6</b> fontes · <b>7</b> frentes
+          </span>
+          <span class="cartao-acao">Ver detalhes <span class="seta" aria-hidden="true">→</span></span>
+        </span>
       </a>
 
-      <div class="caso-texto">
-        <div class="caso-corpo">
-          <p class="eyebrow">Sistema em produção · Vue 3 + Fastify + Postgres</p>
-          <h3>Central de controle de lançamento</h3>
-          <p>
-            A camada de dados de um lançamento digital inteiro, construída por mim
-            de ponta a ponta: autenticação e renovação de token de seis
-            plataformas, ingestão, normalização, definição de cada métrica e de
-            cada meta.
-          </p>
-          <p>
-            Roda sobre <strong>R$ 500 mil em verba de tráfego e disparos</strong> e
-            é a fonte que sete frentes da equipe consultam para decidir o dia
-            seguinte, da mídia à direção. Eu opero e entrego a leitura.
-          </p>
-        </div>
-
-        <aside class="caso-ficha">
-          <dl>
-            <div><dt>Verba acompanhada</dt><dd>R$ 500 mil</dd></div>
-            <div><dt>Frentes usando</dt><dd>7</dd></div>
-            <div><dt>Fontes integradas</dt><dd>6</dd></div>
-            <div><dt>Estado</dt><dd>em produção</dd></div>
-          </dl>
-          <p class="links">
-            <a class="botao" href="./casos/painel-captacao.html">Ver o caso</a>
-            <a class="link-sec" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/">Abrir a demonstração</a>
-          </p>
-        </aside>
-      </div>
-    </article>
+    </div>
 
     <p class="proximos">
-      Outros casos em preparação.
+      Outros projetos entram aqui conforme eu for documentando.
     </p>
   </main>
 
