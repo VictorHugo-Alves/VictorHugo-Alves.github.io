@@ -318,3 +318,197 @@ img { max-width: 100%; height: auto; display: block; }
   * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
   .caso-tela:hover { transform: none; }
 }
+
+/* ====================================================================
+   Página de caso. Coluna única de leitura, para o texto longo caber sem
+   virar parede. A capa fica curta e escala para N casos; a história
+   inteira mora aqui.
+   ==================================================================== */
+
+.folha-caso { max-width: 780px; }
+
+.voltar {
+  font-family: var(--mono);
+  font-size: .78rem;
+  letter-spacing: .04em;
+  color: var(--suave);
+  margin: 0 0 clamp(32px, 5vw, 48px);
+}
+
+.voltar a { text-decoration-color: var(--linha); text-underline-offset: 3px; }
+.voltar span { padding: 0 6px; }
+
+.caso-topo { padding-bottom: clamp(32px, 5vw, 44px); }
+
+.caso-topo h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -.018em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(1.06rem, 2vw, 1.2rem);
+  line-height: 1.58;
+  margin: 0 0 18px;
+}
+
+.caso-topo p:last-child { margin-bottom: 0; }
+
+/* faixa de números: a escala do projeto antes de qualquer explicação */
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--linha);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 0 clamp(40px, 6vw, 56px);
+}
+
+.numeros > div {
+  background: var(--superf);
+  padding: 18px 18px 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.numeros .num {
+  font-family: var(--mono);
+  font-size: 1.28rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.01em;
+  color: var(--tinta);
+}
+
+.numeros .rot {
+  font-size: .8rem;
+  line-height: 1.35;
+  color: var(--suave);
+}
+
+.folha-caso section { margin-bottom: clamp(40px, 6vw, 60px); }
+
+.folha-caso h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  line-height: 1.16;
+  letter-spacing: -.012em;
+  margin: 0 0 16px;
+  padding-top: 22px;
+  border-top: 1px solid var(--linha);
+  text-wrap: balance;
+}
+
+.folha-caso h3 {
+  font-size: 1.02rem;
+  font-weight: 500;
+  margin: 26px 0 8px;
+  color: var(--tinta);
+}
+
+.folha-caso p { margin: 0 0 16px; }
+.folha-caso section > p:last-child { margin-bottom: 0; }
+.folha-caso strong { font-weight: 500; }
+
+/* quem opera: papel em destaque, o que procura em texto corrido */
+.lista-frentes {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  border-top: 1px solid var(--linha);
+}
+
+.lista-frentes li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linha);
+  font-size: .96rem;
+  color: var(--suave);
+}
+
+.lista-frentes b { font-weight: 500; color: var(--tinta); }
+
+/* etapas do pipeline: a numeração é informação, não enfeite. A ordem é a
+   ordem em que o dado atravessa o sistema. */
+.etapas {
+  list-style: none;
+  counter-reset: etapa;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.etapas > li {
+  counter-increment: etapa;
+  position: relative;
+  padding: 16px 0 16px 46px;
+  border-bottom: 1px solid var(--linha);
+}
+
+.etapas > li:last-child { border-bottom: 0; }
+
+.etapas > li::before {
+  content: counter(etapa, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 18px;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--realce);
+}
+
+.etapas h3 { margin: 0 0 6px; }
+.etapas p { margin: 0; font-size: .96rem; color: var(--suave); }
+
+/* tabela de integrações */
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .93rem;
+  margin: 0 0 14px;
+}
+
+.tabela th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--suave);
+  padding: 0 14px 9px 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+.tabela td {
+  padding: 12px 14px 12px 0;
+  border-bottom: 1px solid var(--linha);
+  vertical-align: top;
+  color: var(--suave);
+}
+
+.tabela td:first-child {
+  font-family: var(--mono);
+  font-size: .86rem;
+  color: var(--tinta);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.obs { font-size: .9rem; color: var(--suave); }
+
+.autoria p {
+  font-size: .96rem;
+  color: var(--suave);
+}
+
+@media (max-width: 560px) {
+  .tabela td:first-child { white-space: normal; }
+}

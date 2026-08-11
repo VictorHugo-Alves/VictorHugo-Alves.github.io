@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Victor Hugo · Analista de dados</title>
-<meta name="description" content="Extração, tratamento e análise de dados de aquisição. Casos de painéis e decisões de leitura de dado em lançamentos digitais.">
+<meta name="description" content="Construo e opero a camada de dados de lançamentos digitais: ingestão, normalização, métricas e a análise que sustenta a decisão.">
 <meta name="author" content="Victor Hugo">
 
 <!-- Cartão de pré-visualização: é o que aparece quando o link é colado no
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://victorhugo-alves.github.io/">
 <meta property="og:title" content="Victor Hugo · Analista de dados">
-<meta property="og:description" content="Extração, tratamento e análise de dados de aquisição. Casos de painéis e decisões de leitura de dado em lançamentos digitais.">
+<meta property="og:description" content="Construo e opero a camada de dados de lançamentos digitais: ingestão, normalização, métricas e a análise que sustenta a decisão.">
 <meta property="og:image" content="https://victorhugo-alves.github.io/img/painel-captacao.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -35,16 +35,18 @@
       <p class="papel">Analista de dados</p>
     </div>
     <p class="posicao">
-      Trabalho com extração, tratamento e análise de dados de aquisição: o caminho
-      que vai do gasto em mídia até o lead qualificado. Os casos abaixo são sobre
-      decisões de leitura de dado, não sobre telas bonitas.
+      Construo e opero a camada de dados de lançamentos digitais: a ingestão de
+      cada fonte, a normalização, a definição de cada métrica e a análise que
+      sustenta a decisão. Os sistemas abaixo estão em produção, com equipe
+      dependendo deles todo dia.
     </p>
     <ul class="disciplinas">
-      <li>Extração</li>
-      <li>Tratamento</li>
-      <li>Análise</li>
+      <li>Pipeline de dados</li>
+      <li>Integração de API</li>
+      <li>Modelagem de métrica</li>
       <li>Padronização de UTM</li>
       <li>Auditoria de base</li>
+      <li>Análise para decisão</li>
     </ul>
   </header>
 
@@ -52,49 +54,47 @@
     <h2 class="secao">Casos</h2>
 
     <article class="caso">
-      <a class="caso-tela" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/"
-         aria-label="Abrir a demonstração do painel de captação">
+      <a class="caso-tela" href="./casos/painel-captacao.html"
+         aria-label="Abrir o caso da central de controle de lançamento">
         <img src="./img/painel-captacao.png" width="1600" height="977" loading="eager" decoding="async"
              alt="Painel de captação: contagem regressiva do evento, barra de progresso da captação e dois cartões de ritmo, um de leads e outro de investimento, cada um comparando o acumulado do dia com a meta diária.">
-        <span class="caso-abrir">Abrir a demonstração</span>
+        <span class="caso-abrir">Ver o caso</span>
       </a>
 
       <div class="caso-texto">
         <div class="caso-corpo">
-          <p class="eyebrow">Painel de operação · Vue 3 + Fastify + Postgres</p>
-          <h3>Painel de captação de lançamento</h3>
+          <p class="eyebrow">Sistema em produção · Vue 3 + Fastify + Postgres</p>
+          <h3>Central de controle de lançamento</h3>
           <p>
-            Painel que a equipe opera durante uma captação de 40 dias para decidir
-            onde colocar verba no dia seguinte. O que está publicado é o
-            <strong>front de produção rodando com dados gerados do zero</strong>:
-            mesmos componentes, mesmas contas, nenhum número real.
+            A camada de dados de um lançamento digital inteiro, construída por mim
+            de ponta a ponta: autenticação e renovação de token de seis
+            plataformas, ingestão, normalização, definição de cada métrica e de
+            cada meta.
           </p>
           <p>
-            A decisão que ele carrega é a escala de cor. Antes, cada métrica era
-            verde quando batia a meta e vermelha quando não batia, então duas
-            páginas convertendo 34% e 19% contra o mesmo alvo saíam idênticas na
-            tela. Quem opera precisa saber o que atacar primeiro, e duas cores não
-            priorizam nada.
+            Roda sobre <strong>R$ 500 mil em verba de tráfego e disparos</strong> e
+            é a fonte que sete frentes da equipe consultam para decidir o dia
+            seguinte, da mídia à direção. Eu opero e entrego a leitura.
           </p>
         </div>
 
         <aside class="caso-ficha">
           <dl>
-            <div><dt>Janela</dt><dd>40 dias</dd></div>
-            <div><dt>Rotas de API</dt><dd>35</dd></div>
-            <div><dt>Dados</dt><dd>100% gerados</dd></div>
+            <div><dt>Verba acompanhada</dt><dd>R$ 500 mil</dd></div>
+            <div><dt>Frentes usando</dt><dd>7</dd></div>
+            <div><dt>Fontes integradas</dt><dd>6</dd></div>
+            <div><dt>Estado</dt><dd>em produção</dd></div>
           </dl>
           <p class="links">
-            <a class="botao" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/">Abrir a demonstração</a>
-            <a class="link-sec" href="https://github.com/VictorHugo-Alves/painel-captacao-case">Código e explicação</a>
+            <a class="botao" href="./casos/painel-captacao.html">Ver o caso</a>
+            <a class="link-sec" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/">Abrir a demonstração</a>
           </p>
         </aside>
       </div>
     </article>
 
     <p class="proximos">
-      Outros casos em preparação: controle de acessos de alunos e auditoria de
-      integridade de base.
+      Outros casos em preparação.
     </p>
   </main>
 
@@ -102,8 +102,9 @@
     <p><a href="https://github.com/VictorHugo-Alves">github.com/VictorHugo-Alves</a></p>
     <!-- Para acrescentar LinkedIn ou e-mail, é só duplicar a linha acima. -->
     <p class="nota">
-      As demonstrações usam dados inteiramente fictícios, gerados para este
-      portfólio. Nenhum número, nome ou meta corresponde a operação real.
+      As demonstrações públicas usam dados gerados do zero. Nenhum número, nome ou
+      meta corresponde à operação real, que fica fora do ar por ser informação de
+      negócio.
     </p>
   </footer>
 

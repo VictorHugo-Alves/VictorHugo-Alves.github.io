@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central de controle de lançamento · Victor Hugo</title>
+<meta name="description" content="Camada de dados de um lançamento digital: ingestão de seis fontes, normalização, métricas e o painel que sete frentes operam todo dia.">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://victorhugo-alves.github.io/casos/painel-captacao.html">
+<meta property="og:title" content="Central de controle de lançamento">
+<meta property="og:description" content="Ingestão de seis fontes, normalização, métricas e o painel que sete frentes operam todo dia, sobre R$ 500 mil em verba.">
+<meta property="og:image" content="https://victorhugo-alves.github.io/img/painel-captacao.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231D3FCC'/><path d='M7 22 L13 13 L18 18 L25 9' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="folha folha-caso">
+
+  <p class="voltar"><a href="../">Victor Hugo</a> <span aria-hidden="true">/</span> Casos</p>
+
+  <header class="caso-topo">
+    <p class="eyebrow">Sistema em produção · em operação agora</p>
+    <h1>Central de controle de lançamento</h1>
+    <p class="lead">
+      A camada de dados de um lançamento digital inteiro, da ingestão bruta até a
+      tela que a equipe abre de manhã. Eu construí de ponta a ponta: as conexões
+      com cada fonte, a normalização, a definição de cada métrica e de cada meta, e
+      a operação diária em cima disso.
+    </p>
+    <p>
+      Não é um projeto de estudo. Está rodando sobre <strong>R$ 500 mil em verba de
+      tráfego e disparos</strong>, num lançamento de uma referência nacional no
+      segmento, e é a fonte que sete frentes da equipe consultam para decidir o dia
+      seguinte.
+    </p>
+  </header>
+
+  <section class="numeros" aria-label="Escala do projeto">
+    <div><span class="num">R$ 500 mil</span><span class="rot">verba acompanhada</span></div>
+    <div><span class="num">7</span><span class="rot">frentes usando</span></div>
+    <div><span class="num">6</span><span class="rot">fontes integradas</span></div>
+    <div><span class="num">35</span><span class="rot">rotas de API</span></div>
+  </section>
+
+  <section>
+    <h2>Quem opera</h2>
+    <p>
+      O painel não é relatório de fim de semana. É ferramenta de turno, e cada
+      frente entra procurando uma coisa diferente:
+    </p>
+    <ul class="lista-frentes">
+      <li><b>Gestão de projeto</b> · ritmo contra a meta e o que está travando</li>
+      <li><b>Tráfego</b> · CPL, CPM, criativo por criativo, o que escalar e o que pausar</li>
+      <li><b>Design web</b> · conversão por página de captura</li>
+      <li><b>Design</b> · quais peças estão puxando lead e quais estão caras</li>
+      <li><b>Edição de vídeo</b> · retenção dos criativos em vídeo</li>
+      <li><b>Liderança</b> · projeção de fechamento e leitura de risco</li>
+      <li><b>Direção</b> · o número consolidado, sem intermediário</li>
+    </ul>
+    <p>
+      Todo mundo lendo o mesmo número. Antes disso, cada frente tinha a própria
+      planilha, e discutir dado consumia a reunião inteira.
+    </p>
+  </section>
+
+  <section>
+    <h2>O que eu construí</h2>
+    <p>
+      A parte visível é o painel. A parte que dá trabalho fica atrás dele, e é
+      toda minha:
+    </p>
+
+    <ol class="etapas">
+      <li>
+        <h3>Autenticação e renovação de token</h3>
+        <p>
+          Cada plataforma tem a própria regra de credencial, e é onde a ingestão
+          quebra primeiro. Montei a geração e a renovação de token de cada uma,
+          para o dado não parar de entrar num sábado sem ninguém perceber.
+        </p>
+      </li>
+      <li>
+        <h3>Ingestão das fontes</h3>
+        <p>
+          Seis origens que não conversam entre si, cada uma com o próprio formato,
+          a própria granularidade e o próprio atraso de atualização.
+        </p>
+      </li>
+      <li>
+        <h3>Normalização e reconciliação</h3>
+        <p>
+          É aqui que mora a dificuldade real. O gerenciador de anúncios conta lead
+          de um jeito, a ferramenta de e-mail conta de outro, e o grupo de WhatsApp
+          tem duas fontes que se sobrepõem. Definir qual número é o número, e por
+          quê, foi decisão minha, e é o que sustenta tudo que vem depois.
+        </p>
+      </li>
+      <li>
+        <h3>Camada de métrica</h3>
+        <p>
+          Cada indicador do painel é uma definição que eu escrevi: o que entra no
+          numerador, o que entra no denominador, qual base é a válida. CPL sobre
+          qual lead, conversão de página sobre qual clique, MQL por qual critério.
+        </p>
+      </li>
+      <li>
+        <h3>Metas</h3>
+        <p>
+          Todas calculadas por mim a partir da estrutura do lançamento, não
+          herdadas de referência genérica. É o que permite ao painel dizer não só
+          onde está, mas se está no ritmo de chegar.
+        </p>
+      </li>
+      <li>
+        <h3>Operação e análise</h3>
+        <p>
+          Eu opero o sistema todo dia e entrego a leitura para a liderança. O
+          painel é o veículo. O produto é a decisão que sai dele.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>As integrações</h2>
+    <table class="tabela">
+      <thead>
+        <tr><th>Fonte</th><th>O que entra</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Meta Ads</td><td>investimento, impressões, cliques, criativo por criativo, retenção de vídeo, status do gerenciador</td></tr>
+        <tr><td>Google Ads</td><td>investimento e resultado por campanha e por anúncio</td></tr>
+        <tr><td>ActiveCampaign</td><td>base de leads, segmento, origem de UTM, envio e leitura de e-mail</td></tr>
+        <tr><td>SendFlow</td><td>entrada e saída do grupo de WhatsApp, por dia e por pessoa</td></tr>
+        <tr><td>Unnichat</td><td>mensageria de onboarding e custo por mensagem</td></tr>
+        <tr><td>ClickUp</td><td>execução da equipe durante o lançamento</td></tr>
+      </tbody>
+    </table>
+    <p class="obs">
+      Banco em Postgres no Supabase, API em Fastify, painel em Vue 3. A ingestão é
+      automática: ninguém cola planilha em lugar nenhum.
+    </p>
+  </section>
+
+  <section>
+    <h2>Duas decisões de leitura</h2>
+    <p>
+      Um painel não é neutro. Toda escolha de como mostrar um número é uma escolha
+      sobre o que a pessoa vai fazer com ele.
+    </p>
+
+    <h3>Régua de ritmo que recalcula</h3>
+    <p>
+      Meta dividida pelo total de dias é inútil no dia 20: já não diz o que fazer.
+      A régua recalcula o necessário por dia toda manhã, sobre o que falta e os
+      dias que restam, e a média de comparação usa só dias fechados, porque
+      comparar com o dia em curso sempre acusa atraso que não existe.
+    </p>
+
+    <h3>Cor por distância da meta</h3>
+    <p>
+      Métrica verde quando bate e vermelha quando não bate faz duas páginas
+      convertendo 34% e 19% saírem idênticas na tela contra o mesmo alvo. Não são
+      a mesma situação, e quem opera precisa saber o que atacar primeiro. Virou
+      escala de cinco faixas por distância do alvo.
+    </p>
+  </section>
+
+  <section>
+    <h2>A demonstração</h2>
+    <p>
+      A versão pública roda com <strong>dados gerados do zero</strong>: mesmos
+      componentes, mesmas contas, mesma navegação, nenhum número real. Na versão
+      oficial, tudo que aparece ali tem dado real e funcional por trás.
+    </p>
+    <p>
+      Gerar em vez de anonimizar foi decisão consciente. Anonimizar um recorte real
+      é peneira: escapa um e-mail num campo livre, um telefone dentro de uma
+      observação. Gerando do zero não existe origem. As metas exibidas também são
+      inventadas, porque alvo de operação é informação de negócio.
+    </p>
+    <p class="links">
+      <a class="botao" href="https://victorhugo-alves.github.io/painel-captacao-case/demo/">Abrir a demonstração</a>
+      <a class="link-sec" href="https://github.com/VictorHugo-Alves/painel-captacao-case">Repositório da demonstração</a>
+    </p>
+  </section>
+
+  <section class="autoria">
+    <h2>Autoria</h2>
+    <p>
+      A arquitetura, as integrações, as regras de métrica, as metas e a operação
+      são minhas. O código foi gerado com IA sob minha especificação, revisão e
+      validação. Considero isso parte do método, não uma ressalva: o que sustenta o
+      sistema é saber qual número é o certo e por quê.
+    </p>
+  </section>
+
+  <footer class="rodape">
+    <p><a href="../">Voltar para os casos</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

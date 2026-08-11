@@ -10,20 +10,23 @@ Cada caso mora no repositório dele e tem o próprio Pages. Esta página só lin
 
 | Caso | Repositório |
 | --- | --- |
-| Painel de captação de lançamento | [painel-captacao-case](https://github.com/VictorHugo-Alves/painel-captacao-case) |
+| Central de controle de lançamento | [painel-captacao-case](https://github.com/VictorHugo-Alves/painel-captacao-case) |
 
 ## Para acrescentar um caso
 
-1. Duplicar o bloco `<article class="caso">` no `index.html`.
-2. Trocar texto, ficha e links.
+1. Copiar `casos/painel-captacao.html` para `casos/novo-caso.html` e reescrever.
+2. Duplicar o bloco `<article class="caso">` no `index.html`, apontando para a página nova.
 3. Colocar o preview em `img/` (a captura da tela do próprio projeto serve).
 4. `git push`. O Pages republica em cerca de um minuto.
 
 ## Estrutura
 
-- `index.html` — a página inteira
-- `styles.css` — um arquivo, sem framework
-- `img/` — previews dos casos
+Dois níveis, para a capa não crescer junto com o número de casos:
+
+- `index.html` : capa curta. Cada caso ocupa um bloco com o essencial e leva para a página dele.
+- `casos/*.html` : a história inteira de cada caso. É aqui que o texto longo mora.
+- `styles.css` : um arquivo, sem framework, cobrindo a capa e as páginas de caso.
+- `img/` : previews.
 
 As tags Open Graph no `<head>` montam o cartão de pré-visualização que aparece ao
 colar o link no LinkedIn, no WhatsApp ou no Slack. O `og:image` precisa de URL
