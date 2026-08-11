@@ -80,11 +80,56 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ---------- cabeçalho ---------- */
+/* Duas colunas no desktop: identidade à esquerda, retrato à direita. No
+   estreito o retrato vem primeiro, porque rosto abre melhor que texto. */
 .topo {
   display: grid;
-  gap: 28px;
+  gap: clamp(32px, 5vw, 56px);
   padding-bottom: clamp(40px, 6vw, 64px);
   border-bottom: 1px solid var(--linha);
+}
+
+@media (min-width: 820px) {
+  .topo {
+    grid-template-columns: minmax(0, 1.5fr) minmax(230px, .85fr);
+    align-items: start;
+  }
+}
+
+.topo-texto { display: grid; gap: 20px; align-content: start; }
+.topo-texto p { margin: 0; max-width: 58ch; }
+
+/* Retrato: moldura de fio deslocado. O quadro fica atrás e escapa por dois
+   lados, então a foto ganha profundidade sem virar cartão com sombra. */
+.retrato {
+  position: relative;
+  margin: 0 14px 14px 0;
+  order: -1;
+  justify-self: start;
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (min-width: 820px) {
+  .retrato { order: 0; justify-self: stretch; }
+}
+
+.retrato::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1px solid var(--realce);
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.retrato img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid var(--linha);
+  background: var(--superf);
 }
 
 .topo h1 {
