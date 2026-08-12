@@ -88,7 +88,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .topo-texto { display: grid; gap: 20px; align-content: start; }
-.topo-texto p { margin: 0; max-width: 58ch; }
+.topo-texto p { margin: 0; }   /* sem trava de medida: ocupa a largura toda */
 
 /* Identidade: avatar circular colado no nome. Pequeno de propósito, o
    retrato é assinatura e não ilustração. */
