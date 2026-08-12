@@ -23,8 +23,12 @@
   --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+/* Três estados, não dois. O visitante pode ter escolhido claro, escuro, ou
+   nada (o padrão "sistema", que não carimba atributo nenhum na raiz).
+   Por isso o media query é guardado por :not([data-theme="light"]): assim
+   uma escolha manual por claro vence um sistema no escuro, e vice-versa. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --papel:    #0B0E12;
     --superf:   #12161C;
     --tinta:    #E4E8EE;
@@ -35,6 +39,18 @@
     --realce-f: #161D2E;
     --sombra:   0 1px 2px rgba(0, 0, 0, .4), 0 14px 40px -20px rgba(0, 0, 0, .8);
   }
+}
+
+:root[data-theme="dark"] {
+    --papel:    #0B0E12;
+    --superf:   #12161C;
+    --tinta:    #E4E8EE;
+    --suave:    #8B96A5;
+    --linha:    #222933;
+    --realce:   #8AA6FF;
+    --realce-t: #0A0D12;
+    --realce-f: #161D2E;
+    --sombra:   0 1px 2px rgba(0, 0, 0, .4), 0 14px 40px -20px rgba(0, 0, 0, .8);
 }
 
 /* ---------- base ---------- */
@@ -589,3 +605,47 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: .06em;
   color: var(--suave);
 }
+
+
+/* ---------- botão de tema ---------- */
+/* Fixo no canto: aparece igual na capa e nas páginas de caso, sem precisar
+   repetir marcação em cada arquivo. */
+.tema-btn {
+  position: fixed;
+  top: clamp(14px, 2.5vw, 22px);
+  right: clamp(14px, 2.5vw, 22px);
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--superf);
+  color: var(--suave);
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.tema-btn:hover { color: var(--realce); border-color: var(--realce); }
+.tema-btn:active { transform: scale(.94); }
+.tema-btn:focus-visible { outline: 2px solid var(--realce); outline-offset: 3px; }
+.tema-btn svg { width: 18px; height: 18px; display: block; }
+
+/* o ícone mostra o que o clique FAZ, não o estado atual: no claro
+   aparece a lua (clique para escurecer) e no escuro aparece o sol */
+.tema-btn .lua { display: block; }
+.tema-btn .sol { display: none; }
+:root[data-theme="dark"] .tema-btn .lua,
+:root:not([data-theme="light"]) .tema-btn .lua { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tema-btn .lua { display: none; }
+  :root:not([data-theme="light"]) .tema-btn .sol { display: block; }
+}
+
+:root[data-theme="dark"] .tema-btn .lua { display: none; }
+:root[data-theme="dark"] .tema-btn .sol { display: block; }
+:root[data-theme="light"] .tema-btn .lua { display: block; }
+:root[data-theme="light"] .tema-btn .sol { display: none; }
