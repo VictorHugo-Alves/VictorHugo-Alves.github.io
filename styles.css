@@ -150,24 +150,12 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--tinta);
 }
 
-.disciplinas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-  list-style: none;
+/* Era uma nuvem de nove pílulas. Etiqueta enfileirada não informa nada que
+   a mesma lista em texto corrido não informe, e ocupava a dobra inteira. */
+.corrido {
   margin: 0;
-  padding: 0;
-}
-
-.disciplinas li {
-  font-family: var(--mono);
-  font-size: .74rem;
-  letter-spacing: .045em;
   color: var(--suave);
-  border: 1px solid var(--linha);
-  border-radius: 2px;
-  padding: 5px 10px;
-  background: var(--superf);
+  max-width: 62ch;
 }
 
 /* ---------- seção ---------- */
@@ -381,6 +369,17 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration-color: var(--linha);
   text-underline-offset: 3px;
 }
+
+/* O separador entre os contatos precisa da mesma fonte dos links, senão o
+   ponto sai maior e desalinhado no meio da linha. */
+.contatos {
+  font-family: var(--mono);
+  font-size: .88rem;
+  line-height: 2;
+  color: var(--suave);
+}
+
+.contatos a { font-size: inherit; }
 
 .nota {
   font-size: .84rem;
