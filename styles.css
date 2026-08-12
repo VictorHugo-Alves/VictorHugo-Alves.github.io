@@ -572,3 +572,20 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 560px) {
   .tabela td:first-child { white-space: normal; }
 }
+
+/* cartão sem demonstração publicada ainda: o lugar da capa fica marcado
+   sem fingir que existe uma tela para abrir */
+.cartao-tela--vazia {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  background: var(--realce-f);
+  border-bottom: 1px solid var(--linha);
+}
+
+.cartao-tela--vazia span {
+  font-family: var(--mono);
+  font-size: .74rem;
+  letter-spacing: .06em;
+  color: var(--suave);
+}

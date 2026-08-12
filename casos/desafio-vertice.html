@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel do evento de venda de ingresso · Victor Hugo</title>
+<meta name="description" content="Painel de um evento online de venda de ingresso, com funil de mídia, checkout, criativos por venda real e fechamento por edição.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://victorhugo-alves.github.io/casos/desafio-vertice.html">
+<meta property="og:title" content="Painel do evento de venda de ingresso">
+<meta property="og:description" content="Painel de um evento online de venda de ingresso, com funil de mídia, checkout, criativos por venda real e fechamento por edição.">
+<meta property="og:image" content="https://victorhugo-alves.github.io/img/dsv.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231D3FCC'/><path d='M7 22 L13 13 L18 18 L25 9' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="folha folha-caso">
+
+  <p class="voltar"><a href="../">Victor Hugo</a> <span aria-hidden="true">/</span> Projetos</p>
+
+  <header class="caso-topo">
+    <p class="eyebrow">Sistema em produção · edição a cada 14 dias</p>
+    <h1>Painel do evento de venda de ingresso</h1>
+    <p class="lead">Painel do evento online que vende ingresso e abre a porta para a oferta principal. Roda em ciclo curto, uma edição atrás da outra, e cada edição precisa fechar com o custo de aquisição no lugar.</p>
+    <p>O ponto difícil aqui não é medir venda, é <strong>atribuir</strong>. O gerenciador de anúncios infla e duplica, então contar venda por ele leva a decisão errada. Construí a contagem a partir do rastreio da própria venda, e o gerenciador entra só para o investimento.</p>
+  </header>
+
+  <section class="numeros" aria-label="Escala do projeto">
+    <div><span class="num">14 dias</span><span class="rot">por edição</span></div>
+    <div><span class="num">2</span><span class="rot">plataformas de mídia</span></div>
+    <div><span class="num">SCK</span><span class="rot">atribuição por venda</span></div>
+    <div><span class="num">1</span><span class="rot">fonte de verdade</span></div>
+  </section>
+
+  <section>
+    <h2>O que eu fiz</h2>
+    <p>A tela é a parte visível. O que sustenta ela:</p>
+    <ol class="etapas">
+      <li>
+        <h3>Atribuição por venda, não por plataforma</h3>
+        <p>O gerenciador conta uma venda que veio de vários toques como várias vendas. Escrevi a leitura do parâmetro de rastreio que vem colado em cada venda e um dicionário de padrões que traduz aquilo em criativo. Quando aparece formato novo, o dicionário aprende: eu registro o padrão e ele passa a valer.</p>
+      </li>
+      <li>
+        <h3>Custo de aquisição por criativo</h3>
+        <p>Cruzando a venda atribuída com o investimento do gerenciador, cada anúncio passa a ter custo de aquisição próprio. É o que permite dizer o que escalar e o que pausar, em vez de olhar volume.</p>
+      </li>
+      <li>
+        <h3>O gargalo que ninguém via</h3>
+        <p>A conversão da página, do clique até iniciar o checkout, é onde a maior parte da verba se perde. A conversão do checkout em diante costuma ser alta, então a perda está antes. Separei as duas métricas no painel para que a discussão pare de misturá-las.</p>
+      </li>
+      <li>
+        <h3>Fechamento por edição</h3>
+        <p>Cada ciclo fecha com investimento, faturamento, retorno e custo de aquisição consolidados, e a comparação é sempre dentro da edição corrente, dia contra dia. Comparar com edição passada estava gerando conclusão errada, porque cada edição tem público e oferta diferentes.</p>
+      </li>
+      <li>
+        <h3>Relatório automático</h3>
+        <p>O que antes era montado à mão toda manhã virou saída do próprio painel, no formato que a liderança lê.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>O que entra</h2>
+    <table class="tabela">
+      <thead><tr><th>Fonte</th><th>O que entra</th></tr></thead>
+      <tbody>
+        <tr><td>Meta Ads</td><td>investimento, impressões, cliques, criativo por criativo, retenção de vídeo</td></tr>
+        <tr><td>Google Ads</td><td>investimento e resultado por campanha</td></tr>
+        <tr><td>Plataforma de venda</td><td>transações, com o rastreio colado em cada uma</td></tr>
+        <tr><td>Planilha de vendas</td><td>a base validada que serve de fonte de verdade da contagem</td></tr>
+        <tr><td>Analytics</td><td>comportamento na página de venda</td></tr>
+      </tbody>
+    </table>
+    <p class="obs">Ingestão automática. A contagem de venda nunca sai do gerenciador.</p>
+  </section>
+
+  <section>
+    <h2>A demonstração</h2>
+    <p>A versão pública roda com <strong>dados gerados do zero</strong>: mesmos componentes, mesmas contas, mesma navegação, nenhum número real. Na versão oficial, tudo que aparece ali tem dado real e funcional por trás.</p>
+    <p>
+      Gerar em vez de anonimizar foi decisão consciente. Anonimizar um recorte real é
+      peneira: escapa um e-mail num campo livre, um telefone dentro de uma observação.
+      Gerando do zero não existe origem. Marca, produtos, níveis e metas também são
+      inventados, porque alvo de operação é informação de negócio.
+    </p>
+    <p class="links">
+      <a class="botao" href="https://victorhugo-alves.github.io/dsv-case/">Abrir a demonstração</a>
+      <a class="link-sec" href="https://github.com/VictorHugo-Alves/dsv-case">Repositório</a>
+    </p>
+  </section>
+
+  <section class="autoria">
+    <h2>Autoria</h2>
+    <p>
+      A arquitetura, as integrações, as regras de métrica, as metas e a operação são
+      minhas. O código foi gerado com IA sob minha especificação, revisão e validação.
+      Considero isso parte do método, não uma ressalva: o que sustenta o sistema é
+      saber qual número é o certo e por quê.
+    </p>
+  </section>
+
+  <footer class="rodape"><p><a href="../">Voltar para os projetos</a></p></footer>
+</div>
+</body>
+</html>

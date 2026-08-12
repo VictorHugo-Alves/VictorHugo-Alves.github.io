@@ -38,3 +38,8 @@ o que faz a cara continuar legível quando o círculo tem 64px. Vai para a web c
 As tags Open Graph no `<head>` montam o cartão de pré-visualização que aparece ao
 colar o link no LinkedIn, no WhatsApp ou no Slack. O `og:image` precisa de URL
 absoluta, então ao trocar a imagem principal é preciso trocar essa tag também.
+
+## Publicação
+
+Deploy por **GitHub Actions** (`.github/workflows/deploy.yml`), a cada push na `main`.
+Todos os repositórios de demonstração usam o mesmo workflow.

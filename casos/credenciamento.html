@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema de credenciamento do encontro · Victor Hugo</title>
+<meta name="description" content="Aplicativo de credenciamento por QR do maior evento presencial: fila da porta, crachá, troca de titularidade e auditoria de tudo que foi alterado.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://victorhugo-alves.github.io/casos/credenciamento.html">
+<meta property="og:title" content="Sistema de credenciamento do encontro">
+<meta property="og:description" content="Aplicativo de credenciamento por QR do maior evento presencial: fila da porta, crachá, troca de titularidade e auditoria de tudo que foi alterado.">
+<meta property="og:image" content="https://victorhugo-alves.github.io/img/emv.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231D3FCC'/><path d='M7 22 L13 13 L18 18 L25 9' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="folha folha-caso">
+
+  <p class="voltar"><a href="../">Victor Hugo</a> <span aria-hidden="true">/</span> Projetos</p>
+
+  <header class="caso-topo">
+    <p class="eyebrow">Sistema em produção · aplicativo de porta</p>
+    <h1>Sistema de credenciamento do encontro</h1>
+    <p class="lead">O aplicativo que a equipe usa na porta do evento para credenciar quem chega. Parece simples de fora, e é justamente por isso que quebra: a fila não espera, o sinal cai, e o dado que chega da venda nunca vem pronto.</p>
+    <p>É o outro lado do painel do encontro. Enquanto o painel responde quanto entrou, este responde <strong>quem entrou</strong>, e alimenta de volta a taxa de comparecimento por nível de ingresso.</p>
+  </header>
+
+  <section class="numeros" aria-label="Escala do projeto">
+    <div><span class="num">QR</span><span class="rot">leitura na porta</span></div>
+    <div><span class="num">offline</span><span class="rot">continua funcionando sem sinal</span></div>
+    <div><span class="num">auditoria</span><span class="rot">toda alteração registrada</span></div>
+    <div><span class="num">1</span><span class="rot">fila, sem gargalo</span></div>
+  </section>
+
+  <section>
+    <h2>O que eu fiz</h2>
+    <p>Fiz o sistema inteiro, da preparação do dado até a operação no dia:</p>
+    <ol class="etapas">
+      <li>
+        <h3>Tratamento da base de participantes</h3>
+        <p>O dado bruto da venda não serve para credenciar. Nome com caixa errada, duplicado, quem comprou para outra pessoa, quem comprou mais de um ingresso. Todo esse tratamento é meu, e é o que faz a fila andar em vez de travar em cada exceção.</p>
+      </li>
+      <li>
+        <h3>Nome de crachá separado do nome de compra</h3>
+        <p>Quem compra nem sempre é quem vai. E quem vai quer o nome que usa, não o do documento. Separei os dois campos, porque imprimir crachá com nome de compra gera correção manual bem na hora do pico.</p>
+      </li>
+      <li>
+        <h3>Troca de titularidade e de plano</h3>
+        <p>Ingresso que muda de dono e participante que troca de plano eram a maior fonte de erro na porta: a pessoa chegava e não existia. Modelei os dois como alteração rastreada, com o registro de quem era antes e quem é agora.</p>
+      </li>
+      <li>
+        <h3>Credenciamento por QR, com fila em mente</h3>
+        <p>Leitura, confirmação e entrega de crachá em um toque. O aplicativo continua funcionando sem sinal e sincroniza depois, porque casa de evento é onde a rede cai.</p>
+      </li>
+      <li>
+        <h3>Auditoria de tudo</h3>
+        <p>Toda alteração fica registrada: o que mudou, quando e a partir de qual estado. Numa operação em que várias pessoas mexem na mesma base ao mesmo tempo, sem trilha ninguém consegue reconstruir o que aconteceu.</p>
+      </li>
+      <li>
+        <h3>Cruzamento com o produto comprado</h3>
+        <p>Cada participante carrega o nível e o produto que comprou, então a porta sabe quem tem acesso a quê, e o painel do evento recebe de volta o comparecimento por nível.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>O que o sistema resolve</h2>
+    <table class="tabela">
+      <thead><tr><th>Situação</th><th>Como é tratada</th></tr></thead>
+      <tbody>
+        <tr><td>Ingresso comprado para outra pessoa</td><td>nome de crachá próprio, separado do nome da compra</td></tr>
+        <tr><td>Troca de titularidade</td><td>alteração rastreada, com estado anterior preservado</td></tr>
+        <tr><td>Troca de plano</td><td>atualiza nível e o que a pessoa acessa dentro do evento</td></tr>
+        <tr><td>Duplicidade na base</td><td>deduplicação antes do evento, não na fila</td></tr>
+        <tr><td>Queda de sinal na porta</td><td>funciona offline e sincroniza depois</td></tr>
+        <tr><td>Correção feita no dia</td><td>registrada em auditoria, com autor e horário</td></tr>
+      </tbody>
+    </table>
+    <p class="obs">Banco próprio, separado do painel. A porta não pode depender de nenhum outro sistema estar de pé.</p>
+  </section>
+
+  <section>
+    <h2>A demonstração</h2>
+    <p>A demonstração pública deste sistema ainda está sendo preparada. O repositório de produção contém dado pessoal de participantes reais e por isso não é publicável: a versão de demonstração precisa ser reconstruída com participantes gerados do zero, e é o próximo passo.</p>
+    <p>
+      Gerar em vez de anonimizar foi decisão consciente. Anonimizar um recorte real é
+      peneira: escapa um e-mail num campo livre, um telefone dentro de uma observação.
+      Gerando do zero não existe origem. Marca, produtos, níveis e metas também são
+      inventados, porque alvo de operação é informação de negócio.
+    </p>
+    <p class="links"><a class="link-sec" href="https://github.com/VictorHugo-Alves">Repositório</a></p>
+  </section>
+
+  <section class="autoria">
+    <h2>Autoria</h2>
+    <p>
+      A arquitetura, as integrações, as regras de métrica, as metas e a operação são
+      minhas. O código foi gerado com IA sob minha especificação, revisão e validação.
+      Considero isso parte do método, não uma ressalva: o que sustenta o sistema é
+      saber qual número é o certo e por quê.
+    </p>
+  </section>
+
+  <footer class="rodape"><p><a href="../">Voltar para os projetos</a></p></footer>
+</div>
+</body>
+</html>
