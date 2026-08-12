@@ -90,7 +90,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .folha {
-  max-width: 1080px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: clamp(48px, 9vw, 108px) clamp(20px, 5vw, 48px) 72px;
 }
@@ -158,6 +158,10 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 62ch;
 }
 
+/* "Sistema em produção" aparecia nos cinco cartões. Rótulo que se repete em
+   tudo não informa nada, então é dito uma vez só, aqui. */
+.intro { margin: -6px 0 clamp(30px, 4vw, 40px); text-wrap: balance; }
+
 /* ---------- seção ---------- */
 .secao {
   font-family: var(--mono);
@@ -209,101 +213,99 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--tinta);
 }
 
-/* ---------- grade de projetos ---------- */
-/* Duas colunas no desktop. Cartão menor que antes de propósito: cabe mais
-   projeto na mesma dobra, e a grade cresce sem nenhum ajuste. */
-.grade {
+/* ---------- projetos ----------
+   Saíram os cartões. Eu construo painel, e o painel era mostrado num
+   recorte 16:9 de 350px de largura: dava para ver que existe uma tela, não
+   o que tem nela. Agora a tela ocupa a largura da folha, inteira e sem
+   corte, e o texto vira legenda numa coluna estreita ao lado. É a prova do
+   trabalho ganhando o espaço, e a legenda explicando. */
+.obras {
   display: grid;
-  gap: clamp(18px, 2.5vw, 26px);
+  gap: clamp(44px, 6.5vw, 76px);
 }
 
-@media (min-width: 720px) {
-  .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.cartao {
+.obra {
   display: grid;
-  grid-template-rows: auto 1fr;
+  gap: 18px;
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--linha);
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--superf);
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
-.cartao:hover {
-  transform: translateY(-2px);
+@media (min-width: 880px) {
+  .obra {
+    grid-template-columns: minmax(0, 1fr) 286px;
+    gap: 34px;
+    align-items: start;
+  }
+}
+
+.obra-tela {
+  display: block;
+  border: 1px solid var(--linha);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--papel);
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+.obra:hover .obra-tela {
   border-color: var(--realce);
   box-shadow: var(--sombra);
 }
 
-.cartao-tela {
-  display: block;
-  border-bottom: 1px solid var(--linha);
-  background: var(--papel);
-}
+.obra-tela img { width: 100%; }   /* sem recorte: a tela vale inteira */
 
-.cartao-tela img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.cartao-corpo {
+.obra-texto {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   align-content: start;
-  padding: 18px 20px 20px;
 }
 
-.cartao-titulo {
+.obra-titulo {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: 1.32rem;
+  font-size: 1.28rem;
   line-height: 1.16;
   letter-spacing: -.012em;
   color: var(--tinta);
+  transition: color .25s ease;
 }
 
-.cartao-resumo {
-  font-size: .93rem;
+.obra:hover .obra-titulo { color: var(--realce); }
+
+.obra-resumo {
+  font-size: .92rem;
   line-height: 1.5;
   color: var(--suave);
 }
 
-.cartao-fatos {
+.obra-fatos {
   font-family: var(--mono);
-  font-size: .76rem;
+  font-size: .75rem;
+  line-height: 1.7;
   font-variant-numeric: tabular-nums;
   color: var(--suave);
-  padding-top: 10px;
-  margin-top: 2px;
+  padding-top: 11px;
   border-top: 1px solid var(--linha);
 }
 
-.cartao-fatos b { font-weight: 500; color: var(--tinta); }
+.obra-fatos b { font-weight: 500; color: var(--tinta); }
 
-/* afordância explícita de clique: sem isso o cartão inteiro vira link mudo */
-.cartao-acao {
+/* afordância explícita de clique: sem isso o bloco inteiro vira link mudo */
+.obra-acao {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 6px;
   font-size: .9rem;
   color: var(--realce);
 }
 
-.cartao-acao .seta {
-  transition: transform .25s ease;
-}
+.obra-acao .seta { transition: transform .25s ease; }
 
-.cartao:hover .cartao-acao .seta,
-.cartao:focus-visible .cartao-acao .seta { transform: translateX(4px); }
+.obra:hover .obra-acao .seta,
+.obra:focus-visible .obra-acao .seta { transform: translateX(4px); }
 
-.cartao:focus-visible { outline: 2px solid var(--realce); outline-offset: 3px; }
+.obra:focus-visible { outline: 2px solid var(--realce); outline-offset: 4px; }
 
 /* ---------- compartilhados com a página de caso ---------- */
 .eyebrow {
