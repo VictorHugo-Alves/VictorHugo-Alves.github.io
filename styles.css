@@ -1,26 +1,37 @@
 /* ====================================================================
-   Capa do portfólio. Um arquivo, sem framework.
+   Portfólio de Victor Hugo. Um arquivo, sem framework.
 
-   Ideia do layout: a página é uma ficha técnica, não um cartão de visita.
-   Régua de leitura estreita, numerais tabulares, e cada caso ocupando a
-   largura toda em vez de virar um cartãozinho arredondado numa grade.
+   A página é uma FICHA DE OPERAÇÃO, não um cartão de visita.
+
+   Duas decisões carregam o layout:
+
+   1. Coluna fixa à esquerda com a identificação e o contato. Ela não
+      rola: quem chega no fim da página ainda tem como responder.
+   2. Todo número aparece com a origem embaixo. É a mesma regra que eu
+      sigo no trabalho, virada em elemento de página.
+
+   Sobre a tipografia: a monoespaçada foi retirada de tudo que é rótulo.
+   Mono aqui significaria "isto é código", e não havia código nenhum na
+   página. Sobrou uma grotesca estreita para estrutura e número, e uma
+   serifa de leitura para o texto corrido.
    ==================================================================== */
 
 /* ---------- tokens: o claro é o padrão, o escuro só redefine ---------- */
 :root {
-  --papel:    #F3F4F7;
-  --superf:   #FFFFFF;
-  --tinta:    #101317;
-  --suave:    #5C6672;
-  --linha:    #DBDFE6;
-  --realce:   #1D3FCC;
-  --realce-t: #FFFFFF;   /* texto sobre o realce */
-  --realce-f: #EBEEFB;
-  --sombra:   0 1px 2px rgba(16, 19, 23, .06), 0 12px 32px -18px rgba(16, 19, 23, .35);
+  /* Neutros puxados para o verde do realce. Cinza puro sai como cinza
+     de navegador; este sai como cinza escolhido. */
+  --papel:      #EDF0EF;
+  --superf:     #FFFFFF;
+  --tinta:      #101615;
+  --suave:      #57635F;
+  --linha:      #D2D9D7;
+  --realce:     #0B5D57;   /* 7,8:1 sobre o branco */
+  --realce-t:   #FFFFFF;   /* texto sobre o realce */
+  --realce-f:   #E1ECEA;
+  --sombra:     0 1px 2px rgba(16, 22, 21, .05), 0 18px 40px -24px rgba(16, 22, 21, .3);
 
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --grot:  "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 }
 
 /* Três estados, não dois. O visitante pode ter escolhido claro, escuro, ou
@@ -29,28 +40,28 @@
    uma escolha manual por claro vence um sistema no escuro, e vice-versa. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --papel:    #0B0E12;
-    --superf:   #12161C;
-    --tinta:    #E4E8EE;
-    --suave:    #8B96A5;
-    --linha:    #222933;
-    --realce:   #8AA6FF;
-    --realce-t: #0A0D12;
-    --realce-f: #161D2E;
-    --sombra:   0 1px 2px rgba(0, 0, 0, .4), 0 14px 40px -20px rgba(0, 0, 0, .8);
+    --papel:    #0A0E0D;
+    --superf:   #121816;
+    --tinta:    #E3E9E6;
+    --suave:    #8A9793;
+    --linha:    #212B28;
+    --realce:   #52C7B8;   /* 9,5:1 sobre o papel escuro */
+    --realce-t: #06100F;
+    --realce-f: #12262A;
+    --sombra:   0 1px 2px rgba(0, 0, 0, .5), 0 18px 44px -24px rgba(0, 0, 0, .85);
   }
 }
 
 :root[data-theme="dark"] {
-    --papel:    #0B0E12;
-    --superf:   #12161C;
-    --tinta:    #E4E8EE;
-    --suave:    #8B96A5;
-    --linha:    #222933;
-    --realce:   #8AA6FF;
-    --realce-t: #0A0D12;
-    --realce-f: #161D2E;
-    --sombra:   0 1px 2px rgba(0, 0, 0, .4), 0 14px 40px -20px rgba(0, 0, 0, .8);
+    --papel:    #0A0E0D;
+    --superf:   #121816;
+    --tinta:    #E3E9E6;
+    --suave:    #8A9793;
+    --linha:    #212B28;
+    --realce:   #52C7B8;
+    --realce-t: #06100F;
+    --realce-f: #12262A;
+    --sombra:   0 1px 2px rgba(0, 0, 0, .5), 0 18px 44px -24px rgba(0, 0, 0, .85);
 }
 
 /* ---------- base ---------- */
@@ -60,15 +71,18 @@ body {
   margin: 0;
   background: var(--papel);
   color: var(--tinta);
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.62;
+  font-family: var(--serif);
+  font-size: 17.5px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a { color: var(--realce); }
 
 a:focus-visible,
+button:focus-visible,
 .pular:focus-visible {
   outline: 2px solid var(--realce);
   outline-offset: 3px;
@@ -77,17 +91,445 @@ a:focus-visible,
 
 img { max-width: 100%; height: auto; display: block; }
 
-.pular {
-  position: absolute;
-  left: -9999px;
-}
+.pular { position: absolute; left: -9999px; }
 .pular:focus {
   left: 16px; top: 16px;
-  z-index: 10;
+  z-index: 30;
   background: var(--superf);
   padding: 10px 16px;
   border: 1px solid var(--linha);
+  font-family: var(--grot);
+  font-size: .9rem;
 }
+
+/* ---------- rótulo de seção ----------
+   Régua grossa em cima, texto curto embaixo. A régua é o que separa as
+   seções: sem ela a página vira um rolo contínuo. */
+.secao {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: .73rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0 0 22px;
+  padding-top: 12px;
+  border-top: 2px solid var(--tinta);
+}
+
+/* ====================================================================
+   CAPA
+   ==================================================================== */
+
+.folha-capa {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 48px) 64px;
+}
+
+/* No desktop: identificação à esquerda, conteúdo à direita. Abaixo de
+   980px tudo empilha e o rail vira um cabeçalho comum. */
+@media (min-width: 980px) {
+  .folha-capa {
+    display: grid;
+    grid-template-columns: 268px minmax(0, 1fr);
+    gap: clamp(44px, 5.5vw, 84px);
+    align-items: start;
+  }
+
+  .rail {
+    position: sticky;
+    top: clamp(36px, 6vw, 72px);
+  }
+}
+
+/* ---------- rail de identificação ---------- */
+.rail {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.rail-id { display: grid; gap: 14px; }
+
+.avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  border: 1px solid var(--linha);
+  box-shadow: 0 0 0 6px var(--realce-f);
+}
+
+.nome {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-stretch: 112%;
+  font-size: clamp(1.9rem, 3.4vw, 2.3rem);
+  line-height: .98;
+  letter-spacing: -.018em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.papel {
+  font-family: var(--grot);
+  font-size: .95rem;
+  font-weight: 400;
+  color: var(--suave);
+  margin: 6px 0 0;
+}
+
+/* Ficha do rail: onde ele está hoje. Rótulo pequeno em cima, valor
+   embaixo, porque a coluna é estreita demais para duas colunas. */
+.rail-ficha {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--linha);
+}
+
+.rail-ficha dt {
+  font-family: var(--grot);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--suave);
+  margin-bottom: 3px;
+}
+
+.rail-ficha dd {
+  margin: 0;
+  font-size: .93rem;
+  line-height: 1.45;
+}
+
+/* ---------- contato ---------- */
+.contato {
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--linha);
+  display: grid;
+  gap: 2px;
+}
+
+.contato a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--grot);
+  font-size: .92rem;
+  text-decoration: none;
+  color: var(--tinta);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--linha);
+  transition: color .18s ease, border-color .18s ease;
+}
+
+.contato li:last-child a { border-bottom: 0; }
+
+.contato a:hover { color: var(--realce); border-color: var(--realce); }
+
+.contato .destino {
+  font-size: .82rem;
+  color: var(--suave);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.contato a:hover .destino { color: var(--realce); }
+
+/* ---------- corpo ---------- */
+.corpo { display: grid; gap: clamp(46px, 6vw, 68px); }
+
+/* ---------- tese ----------
+   O maior texto da página não é o nome, é o que ele faz. */
+.tese { display: grid; gap: 22px; }
+
+.tese-linha {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 3.3vw, 2.35rem);
+  line-height: 1.2;
+  letter-spacing: -.011em;
+  margin: 0;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+
+.tese-linha b {
+  font-weight: 600;
+  color: var(--realce);
+  font-style: italic;
+}
+
+.tese p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--suave);
+}
+
+.tese p strong { font-weight: 600; color: var(--tinta); }
+
+/* ---------- leituras ----------
+   Cada número traz embaixo de onde ele saiu. Número sem origem é chute,
+   e um portfólio de analista não pode abrir com chute. */
+/* Duas colunas ou quatro, nunca três: com auto-fit o quarto número caía
+   sozinho numa segunda linha e parecia sobra. */
+.leituras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 30px;
+}
+
+@media (min-width: 1080px) {
+  .leituras { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.leituras li { display: grid; gap: 3px; align-content: start; }
+
+.leitura-valor {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.1vw, 2.15rem);
+  line-height: 1;
+  letter-spacing: -.028em;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+}
+
+.leitura-rotulo {
+  font-family: var(--grot);
+  font-size: .87rem;
+  line-height: 1.3;
+  color: var(--tinta);
+  margin-top: 5px;
+}
+
+.leitura-fonte {
+  font-size: .84rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--suave);
+}
+
+/* ====================================================================
+   PROJETOS
+   Hierarquia explícita: o principal ocupa a linha inteira com a tela
+   grande; os outros quatro dividem duas colunas. Cinco cartões iguais
+   diriam que os cinco pesam igual, e não pesam.
+   ==================================================================== */
+
+.projetos { display: grid; gap: clamp(18px, 2.4vw, 26px); }
+
+.projeto {
+  display: grid;
+  text-decoration: none;
+  color: inherit;
+  background: var(--superf);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.projeto:hover { border-color: var(--realce); box-shadow: var(--sombra); }
+.projeto:focus-visible { outline: 2px solid var(--realce); outline-offset: 3px; }
+
+.projeto-tela { display: block; background: var(--papel); overflow: hidden; }
+
+.projeto-tela img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.projeto-corpo {
+  display: grid;
+  gap: 9px;
+  align-content: start;
+  padding: 18px 20px 20px;
+}
+
+.projeto-titulo {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: 1.14rem;
+  line-height: 1.18;
+  letter-spacing: -.014em;
+  color: var(--tinta);
+  transition: color .2s ease;
+}
+
+.projeto:hover .projeto-titulo { color: var(--realce); }
+
+.projeto-resumo {
+  font-size: .95rem;
+  line-height: 1.48;
+  color: var(--suave);
+}
+
+.projeto-fatos {
+  font-family: var(--grot);
+  font-size: .8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--suave);
+  padding-top: 11px;
+  border-top: 1px solid var(--linha);
+}
+
+.projeto-fatos b { font-weight: 600; color: var(--tinta); }
+
+/* --- o principal --- */
+.projeto--capa .projeto-corpo { padding: clamp(22px, 3vw, 32px); gap: 12px; }
+
+.projeto--capa .projeto-titulo {
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  line-height: 1.12;
+}
+
+.projeto--capa .projeto-resumo { font-size: 1rem; max-width: 46ch; }
+
+/* Marca de posição: só o principal recebe. Um rótulo que aparece em
+   todos os cartões não informa nada. */
+.projeto-marca {
+  font-family: var(--grot);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--realce);
+}
+
+@media (min-width: 760px) {
+  .projeto--capa { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); align-items: stretch; }
+  .projeto--capa .projeto-corpo { align-content: center; }
+  .projeto--capa .projeto-tela { border-left: 1px solid var(--linha); height: 100%; }
+
+  /* Ancorado no canto superior esquerdo: é onde fica o cabeçalho do painel.
+     Centralizado, o corte comia justamente a parte que identifica a tela. */
+  .projeto--capa .projeto-tela img {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 300px;
+    object-position: left top;
+  }
+}
+
+/* --- os outros quatro --- */
+.projetos-resto {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 26px);
+}
+
+@media (min-width: 720px) {
+  .projetos-resto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.projetos-resto .projeto-tela { border-bottom: 1px solid var(--linha); }
+
+/* Título de duas linhas num cartão e de uma no vizinho desalinhava a régua
+   de baixo. O corpo cresce e a linha de fatos é empurrada para o pé, então
+   as réguas dos dois cartões da mesma fileira ficam na mesma altura. */
+.projetos-resto .projeto { grid-template-rows: auto 1fr; }
+
+.projetos-resto .projeto-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.projetos-resto .projeto-fatos { margin-top: auto; }
+
+.proximos {
+  margin: 4px 0 0;
+  font-size: .93rem;
+  font-style: italic;
+  color: var(--suave);
+}
+
+/* ====================================================================
+   FICHA TÉCNICA
+   Rótulo à esquerda, valores à direita. Substituiu a nuvem de pílulas:
+   a mesma informação numa linha, sem virar sopa de etiqueta.
+   ==================================================================== */
+.ficha { margin: 0; border-top: 1px solid var(--linha); }
+
+.ficha > div {
+  display: grid;
+  gap: 3px 28px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+@media (min-width: 620px) {
+  .ficha > div { grid-template-columns: 172px minmax(0, 1fr); align-items: baseline; }
+}
+
+.ficha dt {
+  font-family: var(--grot);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--suave);
+}
+
+.ficha dd {
+  margin: 0;
+  font-size: .97rem;
+  line-height: 1.5;
+  color: var(--tinta);
+}
+
+/* ---------- rodapé ---------- */
+.rodape {
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--linha);
+  display: grid;
+  gap: 12px;
+}
+
+/* Na capa o rodapé é filho de .corpo, então já ganha o gap da coluna.
+   Somar a margem própria abria um vão de quase 160px. */
+.corpo > .rodape { margin-top: 0; }
+
+.rodape p { margin: 0; }
+
+.rodape a {
+  font-family: var(--grot);
+  font-size: .9rem;
+  text-decoration-color: var(--linha);
+  text-underline-offset: 3px;
+}
+
+.nota {
+  font-size: .87rem;
+  line-height: 1.5;
+  color: var(--suave);
+  max-width: 66ch;
+}
+
+/* ---------- movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* ====================================================================
+   PÁGINA DE CASO
+   Coluna única de leitura, para o texto longo caber sem virar parede.
+   A capa fica curta e escala para N casos; a história mora aqui.
+   ==================================================================== */
 
 .folha {
   max-width: 1080px;
@@ -95,340 +537,44 @@ img { max-width: 100%; height: auto; display: block; }
   padding: clamp(48px, 9vw, 108px) clamp(20px, 5vw, 48px) 72px;
 }
 
-/* ---------- cabeçalho ---------- */
-.topo {
-  display: grid;
-  gap: clamp(32px, 5vw, 56px);
-  padding-bottom: clamp(30px, 4.5vw, 44px);
-  border-bottom: 1px solid var(--linha);
-}
-
-.topo-texto { display: grid; gap: 20px; align-content: start; }
-.topo-texto p { margin: 0; }   /* sem trava de medida: ocupa a largura toda */
-
-/* Identidade: avatar circular colado no nome. Pequeno de propósito, o
-   retrato é assinatura e não ilustração. */
-.topo-id {
-  display: flex;
-  align-items: center;
-  gap: clamp(14px, 2.5vw, 20px);
-}
-
-.avatar {
-  flex: none;
-  width: clamp(96px, 13.5vw, 132px);
-  height: clamp(96px, 13.5vw, 132px);
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: 50% 42%;
-  border: 1px solid var(--linha);
-  box-shadow: 0 0 0 5px var(--realce-f);
-}
-
-.topo h1 {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2.2rem, 6vw, 3.4rem);
-  line-height: 1.02;
-  letter-spacing: -.022em;
-  margin: 0;
-  text-wrap: balance;
-}
-
-.papel {
-  font-family: var(--mono);
-  font-size: .78rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--suave);
-  margin: 8px 0 0;
-}
-
-.posicao {
-  font-size: clamp(1.05rem, 2vw, 1.18rem);
-  line-height: 1.55;
-  color: var(--tinta);
-}
-
-.disciplinas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.disciplinas li {
-  font-family: var(--mono);
-  font-size: .74rem;
-  letter-spacing: .045em;
-  color: var(--suave);
-  border: 1px solid var(--linha);
-  border-radius: 2px;
-  padding: 5px 10px;
-  background: var(--superf);
-}
-
-/* ---------- seção ---------- */
-.secao {
-  font-family: var(--mono);
-  font-size: .74rem;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--suave);
-  margin: 0 0 20px;
-}
-
-/* ---------- blocos e seções ---------- */
-.bloco {
-  padding-top: clamp(34px, 4.5vw, 48px);
-}
-
-.secao-2 { margin-top: clamp(30px, 4vw, 40px); }
-
-/* ---------- ferramentas ---------- */
-/* Rótulo à esquerda, lista à direita: dá para varrer a coluna dos rótulos
-   e parar só no grupo que interessa. */
-.ferramentas {
-  margin: 0;
-  border-top: 1px solid var(--linha);
-}
-
-.ferramentas > div {
-  display: grid;
-  gap: 2px 24px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--linha);
-}
-
-@media (min-width: 620px) {
-  .ferramentas > div { grid-template-columns: 170px minmax(0, 1fr); align-items: baseline; }
-}
-
-.ferramentas dt {
-  font-family: var(--mono);
-  font-size: .74rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--suave);
-}
-
-.ferramentas dd {
-  margin: 0;
-  font-size: .97rem;
-  color: var(--tinta);
-}
-
-/* ---------- grade de projetos ---------- */
-/* Duas colunas no desktop. Cartão menor que antes de propósito: cabe mais
-   projeto na mesma dobra, e a grade cresce sem nenhum ajuste. */
-.grade {
-  display: grid;
-  gap: clamp(18px, 2.5vw, 26px);
-}
-
-@media (min-width: 720px) {
-  .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.cartao {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid var(--linha);
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--superf);
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-
-.cartao:hover {
-  transform: translateY(-2px);
-  border-color: var(--realce);
-  box-shadow: var(--sombra);
-}
-
-.cartao-tela {
-  display: block;
-  border-bottom: 1px solid var(--linha);
-  background: var(--papel);
-}
-
-.cartao-tela img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.cartao-corpo {
-  display: grid;
-  gap: 8px;
-  align-content: start;
-  padding: 18px 20px 20px;
-}
-
-.cartao-titulo {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.32rem;
-  line-height: 1.16;
-  letter-spacing: -.012em;
-  color: var(--tinta);
-}
-
-.cartao-resumo {
-  font-size: .93rem;
-  line-height: 1.5;
-  color: var(--suave);
-}
-
-.cartao-fatos {
-  font-family: var(--mono);
-  font-size: .76rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--suave);
-  padding-top: 10px;
-  margin-top: 2px;
-  border-top: 1px solid var(--linha);
-}
-
-.cartao-fatos b { font-weight: 500; color: var(--tinta); }
-
-/* afordância explícita de clique: sem isso o cartão inteiro vira link mudo */
-.cartao-acao {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-top: 6px;
-  font-size: .9rem;
-  color: var(--realce);
-}
-
-.cartao-acao .seta {
-  transition: transform .25s ease;
-}
-
-.cartao:hover .cartao-acao .seta,
-.cartao:focus-visible .cartao-acao .seta { transform: translateX(4px); }
-
-.cartao:focus-visible { outline: 2px solid var(--realce); outline-offset: 3px; }
-
-/* ---------- compartilhados com a página de caso ---------- */
-.eyebrow {
-  font-family: var(--mono);
-  font-size: .73rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--suave);
-  margin: 0;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 18px;
-  margin: 0;
-}
-
-.botao {
-  display: inline-block;
-  background: var(--realce);
-  color: var(--realce-t);
-  text-decoration: none;
-  font-size: .95rem;
-  padding: 11px 20px;
-  border-radius: 3px;
-  transition: filter .2s ease;
-}
-
-.botao:hover { filter: brightness(1.12); }
-
-.link-sec {
-  font-size: .95rem;
-  color: var(--suave);
-  text-decoration-color: var(--linha);
-  text-underline-offset: 3px;
-}
-
-.link-sec:hover { color: var(--realce); }
-
-/* ---------- rodapé ---------- */
-.proximos {
-  margin: clamp(28px, 4vw, 36px) 0 0;
-  font-size: .95rem;
-  color: var(--suave);
-  max-width: 60ch;
-}
-
-.rodape {
-  margin-top: clamp(52px, 7vw, 76px);
-  padding-top: 26px;
-  border-top: 1px solid var(--linha);
-  display: grid;
-  gap: 14px;
-}
-
-.rodape p { margin: 0; }
-
-.rodape a {
-  font-family: var(--mono);
-  font-size: .88rem;
-  text-decoration-color: var(--linha);
-  text-underline-offset: 3px;
-}
-
-.nota {
-  font-size: .84rem;
-  line-height: 1.55;
-  color: var(--suave);
-  max-width: 62ch;
-}
-
-/* ---------- movimento ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-  .cartao:hover { transform: none; }
-}
-
-/* ====================================================================
-   Página de caso. Coluna única de leitura, para o texto longo caber sem
-   virar parede. A capa fica curta e escala para N casos; a história
-   inteira mora aqui.
-   ==================================================================== */
-
-.folha-caso { max-width: 780px; }
+.folha-caso { max-width: 760px; }
 
 .voltar {
-  font-family: var(--mono);
-  font-size: .78rem;
-  letter-spacing: .04em;
+  font-family: var(--grot);
+  font-size: .88rem;
   color: var(--suave);
   margin: 0 0 clamp(32px, 5vw, 48px);
 }
 
 .voltar a { text-decoration-color: var(--linha); text-underline-offset: 3px; }
-.voltar span { padding: 0 6px; }
+.voltar span { padding: 0 7px; }
 
 .caso-topo { padding-bottom: clamp(32px, 5vw, 44px); }
 
 .caso-topo h1 {
-  font-family: var(--serif);
+  font-family: var(--grot);
   font-weight: 600;
-  font-size: clamp(2.1rem, 5.5vw, 3.1rem);
-  line-height: 1.08;
-  letter-spacing: -.018em;
-  margin: 0 0 20px;
+  font-stretch: 106%;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  line-height: 1.05;
+  letter-spacing: -.024em;
+  margin: 14px 0 20px;
   text-wrap: balance;
 }
 
+.eyebrow {
+  font-family: var(--grot);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--realce);
+  margin: 0;
+}
+
 .lead {
-  font-size: clamp(1.06rem, 2vw, 1.2rem);
-  line-height: 1.58;
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
+  line-height: 1.55;
   margin: 0 0 18px;
 }
 
@@ -448,21 +594,23 @@ img { max-width: 100%; height: auto; display: block; }
 
 .numeros > div {
   background: var(--superf);
-  padding: 18px 18px 16px;
+  padding: 17px 18px 15px;
   display: grid;
   gap: 4px;
 }
 
 .numeros .num {
-  font-family: var(--mono);
-  font-size: 1.28rem;
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: 1.35rem;
+  line-height: 1.05;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -.01em;
+  letter-spacing: -.022em;
   color: var(--tinta);
 }
 
 .numeros .rot {
-  font-size: .8rem;
+  font-size: .82rem;
   line-height: 1.35;
   color: var(--suave);
 }
@@ -470,27 +618,29 @@ img { max-width: 100%; height: auto; display: block; }
 .folha-caso section { margin-bottom: clamp(40px, 6vw, 60px); }
 
 .folha-caso h2 {
-  font-family: var(--serif);
+  font-family: var(--grot);
   font-weight: 600;
-  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-size: clamp(1.28rem, 2.6vw, 1.55rem);
   line-height: 1.16;
-  letter-spacing: -.012em;
+  letter-spacing: -.016em;
   margin: 0 0 16px;
   padding-top: 22px;
-  border-top: 1px solid var(--linha);
+  border-top: 2px solid var(--tinta);
   text-wrap: balance;
 }
 
 .folha-caso h3 {
-  font-size: 1.02rem;
-  font-weight: 500;
+  font-family: var(--grot);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.008em;
   margin: 26px 0 8px;
   color: var(--tinta);
 }
 
 .folha-caso p { margin: 0 0 16px; }
 .folha-caso section > p:last-child { margin-bottom: 0; }
-.folha-caso strong { font-weight: 500; }
+.folha-caso strong { font-weight: 600; }
 
 /* quem opera: papel em destaque, o que procura em texto corrido */
 .lista-frentes {
@@ -501,13 +651,13 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .lista-frentes li {
-  padding: 10px 0;
+  padding: 11px 0;
   border-bottom: 1px solid var(--linha);
   font-size: .96rem;
   color: var(--suave);
 }
 
-.lista-frentes b { font-weight: 500; color: var(--tinta); }
+.lista-frentes b { font-weight: 600; color: var(--tinta); font-family: var(--grot); font-size: .93rem; }
 
 /* etapas do pipeline: a numeração é informação, não enfeite. A ordem é a
    ordem em que o dado atravessa o sistema. */
@@ -534,9 +684,11 @@ img { max-width: 100%; height: auto; display: block; }
   position: absolute;
   left: 0;
   top: 18px;
-  font-family: var(--mono);
-  font-size: .78rem;
+  font-family: var(--grot);
+  font-size: .82rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
   color: var(--realce);
 }
 
@@ -547,16 +699,16 @@ img { max-width: 100%; height: auto; display: block; }
 .tabela {
   width: 100%;
   border-collapse: collapse;
-  font-size: .93rem;
+  font-size: .94rem;
   margin: 0 0 14px;
 }
 
 .tabela th {
   text-align: left;
-  font-family: var(--mono);
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .08em;
+  font-family: var(--grot);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .11em;
   text-transform: uppercase;
   color: var(--suave);
   padding: 0 14px 9px 0;
@@ -571,81 +723,101 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .tabela td:first-child {
-  font-family: var(--mono);
-  font-size: .86rem;
+  font-family: var(--grot);
+  font-size: .9rem;
+  font-weight: 500;
   color: var(--tinta);
   white-space: nowrap;
   width: 1%;
-}
-
-.obs { font-size: .9rem; color: var(--suave); }
-
-.autoria p {
-  font-size: .96rem;
-  color: var(--suave);
 }
 
 @media (max-width: 560px) {
   .tabela td:first-child { white-space: normal; }
 }
 
-/* cartão sem demonstração publicada ainda: o lugar da capa fica marcado
-   sem fingir que existe uma tela para abrir */
-.cartao-tela--vazia {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  background: var(--realce-f);
-  border-bottom: 1px solid var(--linha);
+.obs { font-size: .91rem; color: var(--suave); }
+
+.autoria p { font-size: .96rem; color: var(--suave); }
+
+/* ---------- botões e links de ação ---------- */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 0;
 }
 
-.cartao-tela--vazia span {
-  font-family: var(--mono);
-  font-size: .74rem;
-  letter-spacing: .06em;
+.botao {
+  display: inline-block;
+  background: var(--realce);
+  color: var(--realce-t);
+  font-family: var(--grot);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: .93rem;
+  padding: 11px 20px;
+  border-radius: 3px;
+  transition: filter .18s ease;
+}
+
+.botao:hover { filter: brightness(1.14); }
+
+.link-sec {
+  font-family: var(--grot);
+  font-size: .93rem;
   color: var(--suave);
+  text-decoration-color: var(--linha);
+  text-underline-offset: 3px;
 }
 
+.link-sec:hover { color: var(--realce); }
 
-/* ---------- botão de tema ---------- */
-/* Fixo no canto: aparece igual na capa e nas páginas de caso, sem precisar
-   repetir marcação em cada arquivo. */
+/* ====================================================================
+   BOTÃO DE TEMA
+   Na capa ele mora no rail, alinhado com o resto da identificação. Nas
+   páginas de caso não existe rail, então volta a flutuar no canto.
+   ==================================================================== */
 .tema-btn {
-  position: fixed;
-  top: clamp(14px, 2.5vw, 22px);
-  right: clamp(14px, 2.5vw, 22px);
-  z-index: 20;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
   border: 1px solid var(--linha);
   border-radius: 999px;
   background: var(--superf);
   color: var(--suave);
+  font-family: var(--grot);
+  font-size: .82rem;
   cursor: pointer;
-  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+  transition: color .18s ease, border-color .18s ease;
 }
 
 .tema-btn:hover { color: var(--realce); border-color: var(--realce); }
-.tema-btn:active { transform: scale(.94); }
-.tema-btn:focus-visible { outline: 2px solid var(--realce); outline-offset: 3px; }
-.tema-btn svg { width: 18px; height: 18px; display: block; }
+.tema-btn svg { width: 15px; height: 15px; display: block; flex: none; }
+.tema-btn .lua,
+.tema-btn .sol { align-items: center; gap: 7px; }
 
-/* o ícone mostra o que o clique FAZ, não o estado atual: no claro
-   aparece a lua (clique para escurecer) e no escuro aparece o sol */
-.tema-btn .lua { display: block; }
+/* flutuante só quando não há um slot no rail para recebê-lo */
+.tema-btn--solto {
+  position: fixed;
+  top: clamp(14px, 2.5vw, 22px);
+  right: clamp(14px, 2.5vw, 22px);
+  z-index: 20;
+  box-shadow: var(--sombra);
+}
+
+/* o ícone e o texto mostram o que o clique FAZ, não o estado atual:
+   no claro aparece "Escuro", no escuro aparece "Claro" */
+.tema-btn .lua { display: inline-flex; }
 .tema-btn .sol { display: none; }
-:root[data-theme="dark"] .tema-btn .lua,
-:root:not([data-theme="light"]) .tema-btn .lua { display: block; }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .tema-btn .lua { display: none; }
-  :root:not([data-theme="light"]) .tema-btn .sol { display: block; }
+  :root:not([data-theme="light"]) .tema-btn .sol { display: inline-flex; }
 }
 
 :root[data-theme="dark"] .tema-btn .lua { display: none; }
-:root[data-theme="dark"] .tema-btn .sol { display: block; }
-:root[data-theme="light"] .tema-btn .lua { display: block; }
+:root[data-theme="dark"] .tema-btn .sol { display: inline-flex; }
+:root[data-theme="light"] .tema-btn .lua { display: inline-flex; }
 :root[data-theme="light"] .tema-btn .sol { display: none; }
