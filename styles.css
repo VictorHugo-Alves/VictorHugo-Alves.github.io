@@ -100,8 +100,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .avatar {
   flex: none;
-  width: clamp(64px, 9vw, 88px);
-  height: clamp(64px, 9vw, 88px);
+  width: clamp(128px, 18vw, 176px);
+  height: clamp(128px, 18vw, 176px);
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 42%;
